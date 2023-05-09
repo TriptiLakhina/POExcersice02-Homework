@@ -189,9 +189,11 @@ public class TestSuite extends BaseTest {
     public void verifyUserShouldBeAbleToAccessFacebookPageSuccessfully(){
         homePage.clickOnFacebookIconLink();
         facebookPage.verifyFacebookPageUrlAndHeaderElements();
-        facebookPage.closeChildWindow();
+
         facebookPage.switchToMainWindow();
         homePage.verifyHomePageWelcomeMessage();
+        facebookPage.closeChildWindow();
+
 
 
 

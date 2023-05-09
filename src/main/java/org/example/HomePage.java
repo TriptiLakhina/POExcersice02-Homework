@@ -211,9 +211,9 @@ public class HomePage extends Utils {
 
     public void verifyHomePageWelcomeMessage() {
         String actualWelcomeMessage = getTextFromElement(_welcomeToStoreMessage);
-        System.out.println(actualWelcomeMessage);
-//        Assert.assertEquals(actualWelcomeMessage,"Welcome", "Welcome message is wrong");
-        //Welcome to our store
+        System.out.println("Message on homepage to Welcome on the store: " + actualWelcomeMessage);
+        Assert.assertEquals(actualWelcomeMessage,"Welcome to our store", "Welcome message is wrong");
+
     }
 
 

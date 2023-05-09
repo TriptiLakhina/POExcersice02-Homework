@@ -66,6 +66,7 @@ public class FacebookPage extends Utils {
         }
    }
     public void closeChildWindow(){
+        String facebookUrl = getWindowHandle();
         driver.close();
     }
 
