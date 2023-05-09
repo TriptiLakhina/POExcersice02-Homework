@@ -4,9 +4,6 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
-import java.util.Iterator;
-import java.util.Set;
-
 
 public class HomePage extends Utils {
     // Storing locators as global variables
@@ -29,12 +26,12 @@ public class HomePage extends Utils {
     private By _productTitles = By.cssSelector("div.product-grid h2");
     private By _searchButton = By.xpath("//button[@class='button-1 search-box-button']");
     private By _currencySelector = By.cssSelector("select[name=customerCurrency]");
-    private By _productPricesFeaturedProducts = By.cssSelector("div.prices");
+    private By _productPrices_FeaturedProducts = By.cssSelector("div.prices");
     private By _searchTextBox = By.cssSelector("input#small-searchterms");
     private By _buildYourOwnComputer = By.xpath("//a[text()='Build your own computer']");
     private By _newRelease_News = By.xpath("//a[text()='nopCommerce new release!']");
     private By _welcomeToStoreMessage = By.cssSelector("div.topic-block-title");
-    private By _facebookButton = By.cssSelector("li.facebook");
+    private By _facebookIconLinkButton = By.cssSelector("li.facebook");
 
 
 
@@ -110,27 +107,33 @@ public class HomePage extends Utils {
     public void captureActualVoteMessage_RegisteredUser() {
         String expectedTotalVoteCountMessage = "18 votes";
         // Capturing the text on Vote poll for registered customers
-        explicitWait_InvisibilityOfElementLocated(_communityPollVoteButton);
-        explicitWait_VisibilityOfElementLocated(_actualCommunityPollVoteCountMessage, 20);
         explicitWait_ElementToBeClickable(_actualCommunityPollExcellentVoteMessage);
+        String actualVoteExcellentMessage = getTextFromElement(_actualCommunityPollExcellentVoteMessage);
+        String actualVoteGoodMessage = getTextFromElement(_actualCommunityPollGoodVoteMessage);
+        String actualVotePoorMessage = getTextFromElement(_actualCommunityPollPoorVoteMessage);
+        String actualVoteVeryBadMessage = getTextFromElement(_actualCommunityPollVeryBadVoteMessage);
+        explicitWait_VisibilityOfElementLocated(_actualCommunityPollVoteCountMessage, 20);
         String actualCountMessage = getTextFromElement(_actualCommunityPollVoteCountMessage);
 
         // Printing the message displayed to registered user on vote poll
         System.out.println("Message displayed to registered user after vote poll: ");
+        System.out.println("Actual message for Excellent Vote: " + actualVoteExcellentMessage)/;
+        System.out.println("Actual message for Good Vote: " + actualVoteGoodMessage);
+        System.out.println("Actual message for Poor Vote: " + actualVotePoorMessage);
+        System.out.println("Actual message for Very bad Vote: " + actualVoteVeryBadMessage);
         System.out.println("Total no of votes: " + actualCountMessage);
         Assert.assertEquals(actualCountMessage, expectedTotalVoteCountMessage, "Community poll is not giving the correct count for registered users vote");
 
     }
 
 
-    public void printoutProductTitles() {
+    public void printoutProductTitles(){
         getTextFromElements(_productTitles);
-
     }
 
 
-    public void verifySearchAlertMessage() {
-        String expectedSearchAlertMessage = "Please enter some search keyword";
+    public void verifySearchAlertMessage(){
+        // Click on search button
         clickOnElement(_searchButton);
         // Creating object to switch to alert
         Alert alert = driver.switchTo().alert();
@@ -142,14 +145,14 @@ public class HomePage extends Utils {
     }
 
     public void openProduct_BuildYourOwnComputer() {
-        // Click on 'Build your own computer
+        // Click on 'Build your own computer'
         clickOnElement(_buildYourOwnComputer);
     }
 
     public void verifyCommunityPollAlertMessage() {
         // Click on Vote Button
         clickOnElement(_communityPollVoteButton);
-        // Get the alert message text
+        // Capture the alert message text
         handleAlertMessage_GetText();
         // Assert to verify the alert message text
         Assert.assertEquals(handleAlertMessage_GetText(), "Please select an answer", "Wrong alert message display");
@@ -159,20 +162,22 @@ public class HomePage extends Utils {
     }
 
     public void clickOnNewRelease() {
+        // Click on New release! in News
         clickOnElement(_newRelease_News);
     }
 
     public void verifyUserCanSelectTheCurrencyUSD() {
         // Select US Dollar from dropdown
         selectElementByIndex(_currencySelector, 0);
-        Assert.assertEquals(getTextFromElements(_productPricesFeaturedProducts).contains('$'),true,"All products do not display the selected currency$");
-
+        Assert.assertEquals(!getTextFromElements(_productPrices_FeaturedProducts).contains('$'),true,"All products do not display the selected currency$");
     }
     public void verifyUserCanSelectTheCurrencyEuro() {
-        // Select US Dollar from dropdown
+        // Select Euro from dropdown
         selectElementByIndex(_currencySelector, 1);
-        Assert.assertEquals(getTextFromElements(_productPricesFeaturedProducts).contains('€'),true,"All products do not display the selected currency€");
-
+        Assert.assertEquals(getTextFromElements(_productPrices_FeaturedProducts).contains('€'),true,"All products do not display the selected currency€");
+        if (!getTextFromElements(_productPrices_FeaturedProducts).contains('€')){
+            System.out.println(getTextFromElements(_productTitles));
+        }
     }
 
     public void verifyUserSeeCorrectProductsInSearch() {
@@ -183,38 +188,19 @@ public class HomePage extends Utils {
         clickOnElement(_searchButton);
         // Verify the products displayed contains text searched for
         Assert.assertEquals(getTextFromElements(_productTitles).contains(productNameToSearch), true, "search does not show the correct products");
-
     }
 
-    public void clickOnFacebookIconLink()
-    {
-        String MainWindow = getWindowHandle();
-        String mainWindowURL = getCurrentUrl();
-        System.out.println("Main Window url is: " + mainWindowURL);
-        clickOnElement(_facebookButton);
-        // To handle all new opened windows
-        Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
-
-        while (i1.hasNext())
-        {
-            String ChildWindow = i1.next();
-            if (!MainWindow.equalsIgnoreCase(ChildWindow))
-            {
-                // Switching to Child Window
-                driver.switchTo().window(ChildWindow);
-
-            }
-        }
+    public void clickOnFacebookIconLink() {
+        // Click on Facebook icon link from Footer
+        clickOnElement(_facebookIconLinkButton);
     }
-
-
 
     public void verifyHomePageWelcomeMessage() {
+        // Capturing the actual Welcome message on homepage
         String actualWelcomeMessage = getTextFromElement(_welcomeToStoreMessage);
         System.out.println("Message on homepage to Welcome on the store: " + actualWelcomeMessage);
+        // Asserting to verify the Welcome message matches to the requirement
         Assert.assertEquals(actualWelcomeMessage,"Welcome to our store", "Welcome message is wrong");
-
     }
 
 

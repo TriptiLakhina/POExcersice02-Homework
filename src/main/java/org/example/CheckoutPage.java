@@ -30,9 +30,9 @@ public class CheckoutPage extends Utils{
 
     public void fillInCheckoutDetailsAsGuestUser() {
         // Type First name
-        typeText(_billingFirstName,"TestFirstName");
+        typeText(_billingFirstName,"TestFirst");
         // Type Last name
-        typeText(_billingLastName,"TestLastName");
+        typeText(_billingLastName,"TestLast");
         // Type Email
         typeText(_billingEmail,"TestEmail@gmail.com");
         // Select Country from dropdown

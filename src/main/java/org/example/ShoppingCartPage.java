@@ -18,6 +18,7 @@ public class ShoppingCartPage extends Utils{
     }
 
     public void verifyProductSpecifications() {
+        // Storing the Expected specifications of the product
         String expectedSpecifications = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200\n" +
                 "RAM: 8GB [+$60.00]\n" +
                 "HDD: 320 GB\n" +
@@ -25,7 +26,9 @@ public class ShoppingCartPage extends Utils{
                 "Software: Microsoft Office [+$50.00]\n" +
                 "Software: Acrobat Reader [+$10.00]\n" +
                 "Software: Total Commander [+$5.00]";
+        // Getting text for specifications in shopping cart list
         String actualSpecifications = getTextFromElement(_productSpecifications);
+        // Asserting to verify the specifications in shopping cart match the required specifications
         Assert.assertEquals(actualSpecifications,expectedSpecifications,"Product specifications are not as ordered");
     }
 

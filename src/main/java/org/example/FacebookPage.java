@@ -18,62 +18,43 @@ public class FacebookPage extends Utils {
 
 
     public void verifyFacebookPageUrlAndHeaderElements() {
-        String facebookURL = getCurrentUrl();
-        System.out.println("Child Window url is: " + facebookURL);
-        Assert.assertEquals(facebookURL, "https://www.facebook.com/nopCommerce", "URL does not match");
-        Assert.assertEquals(facebookURL.contains(getTextFromElement(_pageTitle_Facebook)),true,"URL does not match to the directed page");
-//        explicitWait_ElementToBeClickable(_allowCookies);
-        clickOnElement(_allowCookies);
-        explicitWait_ElementToBeClickable(_closeFB_NopCommerceConnectPopUpWindow);
-        clickOnElement(_closeFB_NopCommerceConnectPopUpWindow);
-        arrayListSizeNotEqualToZero(_fbEmail_Phone,"Element Email is Present","Element Email is Absent");
-//        if(driver.findElements(_fbEmail_Phone).size() != 0){
-//            System.out.println("Element Email is Present");
-//        }else{
-//            System.out.println("Element Email is Absent");
-//        }
-
-        arrayListSizeNotEqualToZero(_fbPassword,"Element Password is Present","Element Password is Absent");
-//        if(driver.findElements(_fbPassword).size() != 0){
-//            System.out.println("Element Password is Present");
-//        }else{
-//            System.out.println("Element Password is Absent");
-//        }
-
-        arrayListSizeNotEqualToZero(_fbLoginButton,"Element LogIn is Present","Element LogIn is Absent");
-//        if(driver.findElements(_fbLoginButton).size() != 0){
-//            System.out.println("Element LogIn is Present");
-//        }else{
-//            System.out.println("Element LogIn is Absent");
-//        }
-
-
-
-    }
-    public void switchToMainWindow() {
-
-        String childWindow = getWindowHandle();
+        // Get Main window handle
+        String MainWindow = getWindowHandle();
+        String mainWindowURL = getCurrentUrl();
+        System.out.println("Main Window url is: " + mainWindowURL);
+        // To handle all new opened windows
         Set<String> s1 = driver.getWindowHandles();
         Iterator<String> i1 = s1.iterator();
 
-        while (i1.hasNext()) {
-            String MainWindow = i1.next();
-            if (!childWindow.equalsIgnoreCase(MainWindow)) {
-                // Switching to Main Window
-                driver.switchTo().window(MainWindow);
-
+        while (i1.hasNext())
+        {
+            String ChildWindow = i1.next();
+            if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
+                // Switch to Child Window
+                driver.switchTo().window(ChildWindow);
+                // Get the url of Child window
+                String facebookURL = getCurrentUrl();
+                System.out.println("Child Window url is: " + facebookURL);
+                // Assert to verify the Url matches
+                Assert.assertEquals(facebookURL, "https://www.facebook.com/nopCommerce", "URL does not match");
+                // Assert to verify URL directs to the correct page
+                Assert.assertEquals(facebookURL.contains(getTextFromElement(_pageTitle_Facebook)),true,"URL does not match to the directed page");
+                // Click on Allow all cookies
+                clickOnElement(_allowCookies);
+                // Close the Popup window for Nop Commerce Connect
+                explicitWait_ElementToBeClickable(_closeFB_NopCommerceConnectPopUpWindow);
+                clickOnElement(_closeFB_NopCommerceConnectPopUpWindow);
+                // Verify the Email text field box is present in header
+                arrayListSizeNotEqualToZero(_fbEmail_Phone,"Text field Email is Present","Element Email is Absent");
+                // Verify the Password field box is present in header
+                arrayListSizeNotEqualToZero(_fbPassword,"Text field Password is Present","Element Password is Absent");
+                // Verify the element Login button is present in header
+                arrayListSizeNotEqualToZero(_fbLoginButton,"LogIn Button is Present","Element LogIn is Absent");
+                // Close the child window
+                driver.close();
             }
         }
-   }
-    public void closeChildWindow(){
-        String facebookUrl = getWindowHandle();
-        driver.close();
+        // Switching to Main Window
+        driver.switchTo().window(MainWindow);
     }
-
-
-
-
-
-
-
 }

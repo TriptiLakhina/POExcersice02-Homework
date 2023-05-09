@@ -12,7 +12,7 @@ public class BuildYourOwnComputerProductPage extends Utils{
     private By _software_TotalCommander = By.xpath("(//input[@type='checkbox'])[3]");
 
     public void fillInTheProductSpecificationsRequired() {
-        // Select Processor - 2.2
+        // Select Processor - 2.2 GHz Intel Pentium Dual-Core E2200
         selectElementByIndex(_processor,1);
         // Select Ram - 8 GB
         selectElementByValue(_ram,"5");

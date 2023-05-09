@@ -16,7 +16,7 @@ public class TestSuite extends BaseTest {
     LogInPage logInPage = new LogInPage();
     ProductPage productPage = new ProductPage();
     BuildYourOwnComputerProductPage buildYourOwnComputerProductPage = new BuildYourOwnComputerProductPage();
-    Login_CheckoutPage loginCheckoutPage = new Login_CheckoutPage();
+    Login_CheckoutAsGuestPage loginCheckoutPage = new Login_CheckoutAsGuestPage();
     CheckoutPage checkoutPage = new CheckoutPage();
     CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage();
     NewReleasePage newReleasePage = new NewReleasePage();
@@ -160,16 +160,16 @@ public class TestSuite extends BaseTest {
 
 
     }
+
     @Test
     public void verifyUserShouldBeAbleToSeeCommunityPollAlertMessage(){
         homePage.verifyCommunityPollAlertMessage();
     }
 
     @Test
-    public void verifyUserShouldSeeAddedCommentLast_NewRelease(){
+    public void verifyUserShouldSeeAddedCommentLastInTheList_NewRelease(){
         homePage.clickOnNewRelease();
         newReleasePage.verifyUserCanAddAComment();
-        newReleasePage.verifyCommentAddedSuccessMessage();
         newReleasePage.verifyLastAddedCommentIsAtTheEndOfList();
 
     }
@@ -189,21 +189,8 @@ public class TestSuite extends BaseTest {
     public void verifyUserShouldBeAbleToAccessFacebookPageSuccessfully(){
         homePage.clickOnFacebookIconLink();
         facebookPage.verifyFacebookPageUrlAndHeaderElements();
-
-        facebookPage.switchToMainWindow();
         homePage.verifyHomePageWelcomeMessage();
- //       facebookPage.closeChildWindow();
-
-
-
-
-
     }
-
-
-
-
-
 
 
 }

@@ -14,8 +14,7 @@ import java.util.List;
 public class Utils extends BasePage{
 
     // Reusable method for click on element - No return type, with parameters
-    public static void clickOnElement(By by)
-    {
+    public static void clickOnElement(By by) {
         driver.findElement(by).click();
     }
 
@@ -66,12 +65,12 @@ public class Utils extends BasePage{
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    // Reusable method for getting text from elements for product list
+    // Reusable method for getting text from elements for list
     public static List<WebElement> getTextFromElements(By by){
-        List< WebElement> productList = driver.findElements(by);
-        for (WebElement productTitle:productList){
+        List< WebElement> fullList = driver.findElements(by);
+        for (WebElement productTitle:fullList){
             System.out.println(productTitle.getText());
-        }return (productList);
+        }return (fullList);
     }
 
 
@@ -117,13 +116,11 @@ public class Utils extends BasePage{
     }
 
     public static String getCurrentUrl(){
-        String currentURL = driver.getCurrentUrl();
-        return currentURL;
+        return driver.getCurrentUrl();
     }
 
     public static String getWindowHandle(){
-        String MainWindow = driver.getWindowHandle();
-        return MainWindow;
+        return driver.getWindowHandle();
     }
 
 
