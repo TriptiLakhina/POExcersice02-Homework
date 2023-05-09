@@ -176,12 +176,13 @@ public class HomePage extends Utils {
     }
 
     public void verifyUserSeeCorrectProductsInSearch() {
+        String productNameToSearch = "Apple";
         // Type product name in Search text box
-        typeText(_searchTextBox, "Nike");
+        typeText(_searchTextBox, productNameToSearch);
         // Click on search button
         clickOnElement(_searchButton);
         // Verify the products displayed contains text searched for
-        Assert.assertEquals(getTextFromElements(_productTitles).contains("Nike"), true, "search does not show the correct products");
+        Assert.assertEquals(getTextFromElements(_productTitles).contains(productNameToSearch), true, "search does not show the correct products");
 
     }
 
