@@ -192,7 +192,7 @@ public class TestSuite extends BaseTest {
 
         facebookPage.switchToMainWindow();
         homePage.verifyHomePageWelcomeMessage();
-        facebookPage.closeChildWindow();
+ //       facebookPage.closeChildWindow();
 
 
 
