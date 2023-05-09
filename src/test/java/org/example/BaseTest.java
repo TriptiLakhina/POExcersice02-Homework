@@ -11,8 +11,8 @@ DriverManager driverManager = new DriverManager();
         driverManager.openBrowser();
     }
 
-//    @AfterMethod
-//    public void tearDown(){
-//        driverManager.closeBrowser();
-//    }
+    @AfterMethod
+    public void tearDown(){
+        driverManager.closeBrowser();
+    }
 }
