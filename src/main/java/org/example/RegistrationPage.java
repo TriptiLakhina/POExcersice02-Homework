@@ -9,12 +9,21 @@ public class RegistrationPage extends Utils{
     private By _password = By.xpath("//input[@name=\"Password\"]");
     private By _confirmPassword = By.xpath("//input[@name=\"ConfirmPassword\"]");
     private By _registerButton = By.xpath("(//button[contains(@type, \"submit\")])[2]");
+    private By _dayOfBirth = By.cssSelector("select[name=DateOfBirthDay]");
+    private By _monthOfBirth = By.xpath("//select[@name=\"DateOfBirthMonth\"]");
+    private By _yearOfBirth = By.xpath("//select[@name=\"DateOfBirthYear\"]");
 
     public void fillInRegistrationDetails_FirstTimeRegistration() {
         // Type first name
         typeText(_firstName, "TestFirstName");
         // Type Last name
         typeText(_lastName, "TestLastName");
+        // Select Day of birth from dropdown
+        selectElementByIndex(_dayOfBirth,9);
+        // Select Month of birth from dropdown
+        selectElementByValue(_monthOfBirth,"2");
+        // Select Year of birth from dropdown
+        selectElementByText(_yearOfBirth,"1986");
         // Type email
         typeText(_email, "TestEmail" + timeStamp() + "@gmail.com");
         // Type password

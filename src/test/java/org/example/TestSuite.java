@@ -14,6 +14,14 @@ public class TestSuite extends BaseTest {
     CameraPhotoPage cameraPhotoPage = new CameraPhotoPage();
     ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
     LogInPage logInPage = new LogInPage();
+    ProductPage productPage = new ProductPage();
+    BuildYourOwnComputerProductPage buildYourOwnComputerProductPage = new BuildYourOwnComputerProductPage();
+    Login_CheckoutPage loginCheckoutPage = new Login_CheckoutPage();
+    CheckoutPage checkoutPage = new CheckoutPage();
+    CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage();
+    NewReleasePage newReleasePage = new NewReleasePage();
+    FacebookPage facebookPage = new FacebookPage();
+
 
     @Test
     public void verifyUserShouldBeAbleToRegisterSuccessfully()
@@ -43,7 +51,7 @@ public class TestSuite extends BaseTest {
         // Click on add to cart button of Apple MacBook Pro 13-inch
        homePage.addToCartButton_AppleMacBookPro13Inch();
         // Click on Email a friend button
-       productAppleMacBookPro13InchPage.emailAFriend();
+       productPage.clickOnEmailAFriendButton();
        // Fill in the 'Email a friend' details
        emailAFriendPage.fillInEmailAFriendDetails();
        // Verify Non registered user should not be able to use the feature and should see the error message
@@ -102,7 +110,7 @@ public class TestSuite extends BaseTest {
         // Click on add to cart - Apple MacBook Pro 13-inch
         homePage.addToCartButton_AppleMacBookPro13Inch();
         // Click on email a friend
-        productAppleMacBookPro13InchPage.emailAFriend();
+        productPage.clickOnEmailAFriendButton();
         // Fill in 'Email a friend' details
         emailAFriendPage.fillInEmailAFriendDetails_RegisteredUser();
         // Verify the message displayed
@@ -127,6 +135,74 @@ public class TestSuite extends BaseTest {
         // Capturing & Verifying the text on Vote poll for registered customers
         homePage.captureActualVoteMessage_RegisteredUser();
     }
+
+    @Test
+    public void printProductTitles(){
+        homePage.printoutProductTitles();
+    }
+
+    @Test
+    public void verifySearchAlertMessage(){
+        homePage.verifySearchAlertMessage();
+    }
+
+    @Test
+    public void verifyGuestUserShouldBeAbleToOrderSuccessfully(){
+        homePage.openProduct_BuildYourOwnComputer();
+        buildYourOwnComputerProductPage.fillInTheProductSpecificationsRequired();
+        productPage.clickOnAddToCartButton();
+        productPage.clickOnShoppingCartButton_Header();
+        shoppingCartPage.verifyProductSpecifications();
+        shoppingCartPage.verifyUserCanCheckoutSuccessfully();
+        loginCheckoutPage.clickOnCheckoutAsGuestButton();
+        checkoutPage.fillInCheckoutDetailsAsGuestUser();
+        checkoutCompletePage.verifyUserCanSeeOrderNumber();
+
+
+    }
+    @Test
+    public void verifyUserShouldBeAbleToSeeCommunityPollAlertMessage(){
+        homePage.verifyCommunityPollAlertMessage();
+    }
+
+    @Test
+    public void verifyUserShouldSeeAddedCommentLast_NewRelease(){
+        homePage.clickOnNewRelease();
+        newReleasePage.verifyUserCanAddAComment();
+        newReleasePage.verifyCommentAddedSuccessMessage();
+        newReleasePage.verifyLastAddedCommentIsAtTheEndOfList();
+
+    }
+
+    @Test
+    public void verifyUserShouldBeAbleToSeeTheProductsInSelectedCurrency(){
+        homePage.verifyUserCanSelectTheCurrencyUSD();
+        homePage.verifyUserCanSelectTheCurrencyEuro();
+    }
+
+    @Test
+    public void verifyUserShouldBeAbleToSearchProducts(){
+        homePage.verifyUserSeeCorrectProductsInSearch();
+    }
+
+    @Test
+    public void verifyUserShouldBeAbleToAccessFacebookPageSuccessfully(){
+        homePage.clickOnFacebookIconLink();
+        facebookPage.verifyFacebookPageUrlAndHeaderElements();
+        facebookPage.closeChildWindow();
+        facebookPage.switchToMainWindow();
+        //       homePage.switchToMainWindow();
+        homePage.verifyHomePageWelcomeMessage();
+
+
+
+
+    }
+
+
+
+
+
 
 
 }
