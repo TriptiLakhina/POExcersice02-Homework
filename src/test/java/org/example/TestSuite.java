@@ -191,7 +191,6 @@ public class TestSuite extends BaseTest {
         facebookPage.verifyFacebookPageUrlAndHeaderElements();
         facebookPage.closeChildWindow();
         facebookPage.switchToMainWindow();
-        //       homePage.switchToMainWindow();
         homePage.verifyHomePageWelcomeMessage();
 
 

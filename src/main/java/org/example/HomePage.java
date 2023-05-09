@@ -185,7 +185,8 @@ public class HomePage extends Utils {
 
     }
 
-    public void clickOnFacebookIconLink() {
+    public void clickOnFacebookIconLink()
+    {
         String MainWindow = getWindowHandle();
         String mainWindowURL = getCurrentUrl();
         System.out.println("Main Window url is: " + mainWindowURL);
@@ -194,26 +195,25 @@ public class HomePage extends Utils {
         Set<String> s1 = driver.getWindowHandles();
         Iterator<String> i1 = s1.iterator();
 
-        while (i1.hasNext()) {
+        while (i1.hasNext())
+        {
             String ChildWindow = i1.next();
-            if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
+            if (!MainWindow.equalsIgnoreCase(ChildWindow))
+            {
                 // Switching to Child Window
                 driver.switchTo().window(ChildWindow);
 
             }
         }
     }
-//    public void switchToMainWindow() {
-//        String MainWindow = getWindowHandle();
-//        driver.switchTo().window(MainWindow);
-//            }
 
 
 
     public void verifyHomePageWelcomeMessage() {
         String actualWelcomeMessage = getTextFromElement(_welcomeToStoreMessage);
         System.out.println(actualWelcomeMessage);
-        //       Assert.assertEquals(actualWelcomeMessage,"Welcome", "Welcome message is wrong");
+//        Assert.assertEquals(actualWelcomeMessage,"Welcome", "Welcome message is wrong");
+        //Welcome to our store
     }
 
 
