@@ -171,7 +171,6 @@ public class TestSuite extends BaseTest {
         homePage.clickOnNewRelease();
         newReleasePage.verifyUserCanAddAComment();
         newReleasePage.verifyLastAddedCommentIsAtTheEndOfList();
-
     }
 
     @Test

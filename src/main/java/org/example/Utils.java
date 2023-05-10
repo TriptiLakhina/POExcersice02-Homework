@@ -68,8 +68,8 @@ public class Utils extends BasePage{
     // Reusable method for getting text from elements for list
     public static List<WebElement> getTextFromElements(By by){
         List< WebElement> fullList = driver.findElements(by);
-        for (WebElement productTitle:fullList){
-            System.out.println(productTitle.getText());
+        for (WebElement nameOfEachElement:fullList){
+            System.out.println(nameOfEachElement.getText());
         }return (fullList);
     }
 
@@ -105,20 +105,21 @@ public class Utils extends BasePage{
         alert.accept();
     }
 
+    // Reusable method to find presence of elements on web page
     public static void arrayListSizeNotEqualToZero(By by, String textToPrint, String textToPrintInElseCondition) {
         if (driver.findElements(by).size() != 0) {
             System.out.println(textToPrint);
         } else {
             System.out.println(textToPrintInElseCondition);
         }
-
-
     }
 
+    // Reusable method to get the current URL
     public static String getCurrentUrl(){
         return driver.getCurrentUrl();
     }
 
+    // Reusable method to get the window handle
     public static String getWindowHandle(){
         return driver.getWindowHandle();
     }

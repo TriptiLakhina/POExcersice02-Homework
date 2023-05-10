@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewReleasePage extends Utils{
+    // Storing comment as global variable so, it can be used in both the methods
     String comment = "Apple MacBook Pro 13 inch";
     private By _title = By.cssSelector("input.enter-comment-title");
     private By _commentFieldBox = By.cssSelector("textarea#AddNewComment_CommentText") ;

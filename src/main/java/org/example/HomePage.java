@@ -117,7 +117,7 @@ public class HomePage extends Utils {
 
         // Printing the message displayed to registered user on vote poll
         System.out.println("Message displayed to registered user after vote poll: ");
-        System.out.println("Actual message for Excellent Vote: " + actualVoteExcellentMessage)/;
+        System.out.println("Actual message for Excellent Vote: " + actualVoteExcellentMessage);
         System.out.println("Actual message for Good Vote: " + actualVoteGoodMessage);
         System.out.println("Actual message for Poor Vote: " + actualVotePoorMessage);
         System.out.println("Actual message for Very bad Vote: " + actualVoteVeryBadMessage);
@@ -128,6 +128,7 @@ public class HomePage extends Utils {
 
 
     public void printoutProductTitles(){
+        // Get the list of all product titles
         getTextFromElements(_productTitles);
     }
 

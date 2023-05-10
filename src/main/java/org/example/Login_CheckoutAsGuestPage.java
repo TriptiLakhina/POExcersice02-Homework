@@ -7,6 +7,7 @@ public class Login_CheckoutAsGuestPage extends Utils{
 
 
     public void clickOnCheckoutAsGuestButton(){
+        // Click on checkout as guest button
         clickOnElement(_checkoutAsGuestButton);
     }
 }
