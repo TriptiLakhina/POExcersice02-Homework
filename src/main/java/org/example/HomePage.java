@@ -182,7 +182,7 @@ public class HomePage extends Utils {
     }
 
     public void verifyUserSeeCorrectProductsInSearch() {
-        String productNameToSearch = "Apple";
+        String productNameToSearch = "Nike";
         // Type product name in Search text box
         typeText(_searchTextBox, productNameToSearch);
         // Click on search button
