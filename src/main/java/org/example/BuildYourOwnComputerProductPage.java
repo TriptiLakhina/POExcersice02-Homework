@@ -20,7 +20,7 @@ public class BuildYourOwnComputerProductPage extends Utils{
         clickOnElement(_hdd_320GB);
         // Click on Operating system radio button for Vista Premium
         clickOnElement(_operatingSystem_VistaPremium);
-        // Check all 3 softwares - No need to check on Microsoft Office as it is checked by default
+        // Check all 3 softwares - No need to check on Microsoft Office as it is checked by default, clicking it again will uncheck it.
         clickOnElement(_software_AcrobatReader);
         clickOnElement(_software_TotalCommander);
 

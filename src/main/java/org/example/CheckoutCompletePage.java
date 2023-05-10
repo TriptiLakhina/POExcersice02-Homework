@@ -10,9 +10,13 @@ public class CheckoutCompletePage extends Utils{
 
 
     public void verifyUserCanSeeOrderNumber(){
+        // Capture the success message
         String orderSuccessMessage = getTextFromElement(_orderSuccessMessage);
+        // Capture the order number
         String orderNumber = getTextFromElement(_orderNumber);
+        // Assert to verify order success message is same as required
         Assert.assertEquals(orderSuccessMessage,"Your order has been successfully processed!", "Order success message text is wrong");
+        // Print the order number
         System.out.println(orderNumber);
     }
 }
