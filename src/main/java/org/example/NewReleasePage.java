@@ -30,14 +30,18 @@ public class NewReleasePage extends Utils{
 
     public void verifyLastAddedCommentIsAtTheEndOfList() {
         ArrayList<String> commentslist = new ArrayList<>();
+        System.out.println("Comment list: ");
         for (WebElement comment : driver.findElements(_comments)) {
             commentslist.add(comment.getText());
+            System.out.println(comment.getText());
         }
         String lastComment = commentslist.get(commentslist.size() - 1);
         if (lastComment.equalsIgnoreCase(comment)) {
             String newCommentAdded = lastComment;
+            System.out.println("\nNew comment added: " + newCommentAdded);
+            System.out.println("Last comment in the list: " + lastComment);
             Assert.assertEquals(newCommentAdded, lastComment, "New comment not added at the end of the list.");
-            System.out.println("New comment added at the end of the list.");
+            System.out.println("\nNew comment added at the end of the list.");
         }
     }
 
