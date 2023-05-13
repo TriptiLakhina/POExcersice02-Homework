@@ -1,14 +1,17 @@
 package org.example;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 public class Utils extends BasePage{
@@ -73,6 +76,16 @@ public class Utils extends BasePage{
         }return (fullList);
     }
 
+    public static boolean getTextFromElements_Contains(By by, String text) {
+        List<WebElement> productList = driver.findElements(by);
+        for (WebElement productTitle : productList) {
+            productTitle.getText();
+            if (productTitle.getText().contains(text)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Reusable method for select option from text
     public static void selectElementByText (By by,String text) {
@@ -123,6 +136,33 @@ public class Utils extends BasePage{
     public static String getWindowHandle(){
         return driver.getWindowHandle();
     }
+
+    public static String currentTimeStamp(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyhhmmss");
+        return sdf.format(date);
+    }
+
+    public static void captureScreenshot(String filename){
+        // Convert web driver object to TakeScreenshot
+        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+
+        // Call getScreenshot as method to create image file
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+
+        // Move image file to new destination
+        File destFile=new File("src\\test\\Screenshots\\" +filename+""+currentTimeStamp()+".png");
+
+        // Copy file at destination
+        try {
+
+                FileUtils.copyFile(SrcFile,destFile);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 }

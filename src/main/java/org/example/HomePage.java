@@ -170,13 +170,16 @@ public class HomePage extends Utils {
     public void verifyUserCanSelectTheCurrencyUSD() {
         // Select US Dollar from dropdown
         selectElementByIndex(_currencySelector, 0);
-        Assert.assertEquals(!getTextFromElements(_productPrices_FeaturedProducts).contains('$'),true,"All products do not display the selected currency$");
+        Assert.assertEquals(getTextFromElements_Contains(_productPrices_FeaturedProducts,"$"),true,"All products do not display the selected currency$");
+        if (!getTextFromElements_Contains(_productPrices_FeaturedProducts,"$")) {
+            System.out.println(getTextFromElements(_productTitles));
+        }
     }
     public void verifyUserCanSelectTheCurrencyEuro() {
         // Select Euro from dropdown
         selectElementByIndex(_currencySelector, 1);
-        Assert.assertEquals(getTextFromElements(_productPrices_FeaturedProducts).contains('€'),true,"All products do not display the selected currency€");
-        if (!getTextFromElements(_productPrices_FeaturedProducts).contains('€')){
+        Assert.assertEquals(getTextFromElements_Contains(_productPrices_FeaturedProducts,"€"),true,"All products do not display the selected currency€");
+        if (!getTextFromElements_Contains(_productPrices_FeaturedProducts,"€")){
             System.out.println(getTextFromElements(_productTitles));
         }
     }
@@ -187,8 +190,9 @@ public class HomePage extends Utils {
         typeText(_searchTextBox, productNameToSearch);
         // Click on search button
         clickOnElement(_searchButton);
+        getTextFromElements(_productTitles);
         // Verify the products displayed contains text searched for
-        Assert.assertEquals(getTextFromElements(_productTitles).contains(productNameToSearch), true, "search does not show the correct products");
+        Assert.assertEquals(getTextFromElements_Contains(_productTitles,productNameToSearch), true, "search does not show the correct products");
     }
 
     public void clickOnFacebookIconLink() {
